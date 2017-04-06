@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Bsdr&#39;s Blog</title>
+  <subtitle>一些微小的工作。</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2017-04-06T05:59:14.340Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>Bsdr</name>
+    <email>bsdr_work@outlook.com</email>
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>test-2</title>
+    <link href="http://yoursite.com/2017/04/06/test-2/"/>
+    <id>http://yoursite.com/2017/04/06/test-2/</id>
+    <published>2017-04-06T04:13:28.000Z</published>
+    <updated>2017-04-06T05:59:14.340Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="这是一个标题"><a href="#这是一个标题" class="headerlink" title="这是一个标题"></a>这是一个标题</h2><p>这是一段介绍</p>
+<ul>
+<li><h4 id="这是一个子标题"><a href="#这是一个子标题" class="headerlink" title="这是一个子标题"></a>这是一个子标题</h4><p>这是一个数学公式 :</p>
+<p>$$ y = \sum^N_{i=1} x_{i}^2 $$ </p>
+<p>$$ \cos 2\theta = \cos^2 \theta - \sin^2 \theta =  2 \cos^2 \theta - 1 $$</p>
+<p>这又是一个公式：</p>
+<p>$$ y = x $$</p>
+<p>这是一个图片</p>
+<p><img src="/image/photo.jpg" alt="我是一张图片"> 。</p>
+</li>
+<li><h4 id="这是第二个子标题"><a href="#这是第二个子标题" class="headerlink" title="这是第二个子标题"></a>这是第二个子标题</h4><p>这是一个表格：</p>
+<p>​</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">第一个</th>
+<th style="text-align:center">第二个</th>
+<th style="text-align:center">第三个</th>
+<th style="text-align:center">第四个</th>
+<th style="text-align:center">第五个</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">1</td>
+<td style="text-align:center">weq</td>
+<td style="text-align:center">qweqw</td>
+<td style="text-align:center">qweqw</td>
+<td style="text-align:center">qwe</td>
+</tr>
+<tr>
+<td style="text-align:center">2</td>
+<td style="text-align:center">wqeqw</td>
+<td style="text-align:center">wqeqw</td>
+<td style="text-align:center">qweq</td>
+<td style="text-align:center">qwe</td>
+</tr>
+</tbody>
+</table>
+<p>  ​</p>
+<p>这是结尾。没有了。</p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;这是一个标题&quot;&gt;&lt;a href=&quot;#这是一个标题&quot; class=&quot;headerlink&quot; title=&quot;这是一个标题&quot;&gt;&lt;/a&gt;这是一个标题&lt;/h2&gt;&lt;p&gt;这是一段介绍&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;h4 id=&quot;这是一个子标题&quot;&gt;&lt;a href=&quot;#这是一个子标题
+    
+    </summary>
+    
+    
+      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+  </entry>
+  
+</feed>
