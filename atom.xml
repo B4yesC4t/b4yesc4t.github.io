@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-04-27T07:55:59.599Z</updated>
+  <updated>2017-04-27T12:11:40.162Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -16,137 +16,50 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>untitled</title>
-    <link href="http://yoursite.com/2017/04/27/untitled-3/"/>
-    <id>http://yoursite.com/2017/04/27/untitled-3/</id>
-    <published>2017-04-27T07:55:59.000Z</published>
-    <updated>2017-04-27T07:55:59.599Z</updated>
+    <title>机器学习的数学基础: 数值优化(一)</title>
+    <link href="http://yoursite.com/2017/04/27/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%9A%84%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80-%E6%95%B0%E5%80%BC%E4%BC%98%E5%8C%96-%E4%B8%80/"/>
+    <id>http://yoursite.com/2017/04/27/机器学习的数学基础-数值优化-一/</id>
+    <published>2017-04-27T10:46:16.000Z</published>
+    <updated>2017-04-27T12:11:40.162Z</updated>
     
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>untitled</title>
-    <link href="http://yoursite.com/2017/04/14/untitled-2/"/>
-    <id>http://yoursite.com/2017/04/14/untitled-2/</id>
-    <published>2017-04-14T12:10:14.000Z</published>
-    <updated>2017-04-14T12:10:14.986Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>untitled</title>
-    <link href="http://yoursite.com/2017/04/14/untitled-1/"/>
-    <id>http://yoursite.com/2017/04/14/untitled-1/</id>
-    <published>2017-04-14T05:34:23.000Z</published>
-    <updated>2017-04-14T05:34:23.211Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>./source/_posts/untitled.md</title>
-    <link href="http://yoursite.com/2017/04/11/source-posts-untitled-md/"/>
-    <id>http://yoursite.com/2017/04/11/source-posts-untitled-md/</id>
-    <published>2017-04-11T11:42:21.000Z</published>
-    <updated>2017-04-11T11:42:21.283Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>基于AI的WAF：分类还是异常检测</title>
-    <link href="http://yoursite.com/2017/04/06/%E5%9F%BA%E4%BA%8EAI%E7%9A%84WAF%EF%BC%9A%E5%88%86%E7%B1%BB%E8%BF%98%E6%98%AF%E5%BC%82%E5%B8%B8%E6%A3%80%E6%B5%8B/"/>
-    <id>http://yoursite.com/2017/04/06/基于AI的WAF：分类还是异常检测/</id>
-    <published>2017-04-06T12:13:45.000Z</published>
-    <updated>2017-04-06T12:13:45.295Z</updated>
-    
-    <summary type="html">
-    
-    </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>test-2</title>
-    <link href="http://yoursite.com/2017/04/06/test-2/"/>
-    <id>http://yoursite.com/2017/04/06/test-2/</id>
-    <published>2017-04-06T04:13:28.000Z</published>
-    <updated>2017-04-06T05:59:14.340Z</updated>
-    
-    <content type="html"><![CDATA[<h2 id="这是一个标题"><a href="#这是一个标题" class="headerlink" title="这是一个标题"></a>这是一个标题</h2><p>这是一段介绍</p>
-<ul>
-<li><h4 id="这是一个子标题"><a href="#这是一个子标题" class="headerlink" title="这是一个子标题"></a>这是一个子标题</h4><p>这是一个数学公式 :</p>
-<p>$$ y = \sum^N_{i=1} x_{i}^2 $$ </p>
-<p>$$ \cos 2\theta = \cos^2 \theta - \sin^2 \theta =  2 \cos^2 \theta - 1 $$</p>
-<p>这又是一个公式：</p>
-<p>$$ y = x $$</p>
-<p>这是一个图片</p>
-<p><img src="/image/photo.jpg" alt="我是一张图片"> 。</p>
-</li>
-<li><h4 id="这是第二个子标题"><a href="#这是第二个子标题" class="headerlink" title="这是第二个子标题"></a>这是第二个子标题</h4><p>这是一个表格：</p>
-<p>​</p>
-</li>
+    <content type="html"><![CDATA[<p>机器学习需要较多的数学基础, <strong>数值优化</strong> 和 <strong>统计</strong> 是机器学习中应用最多的两门数学. 大部分的机器学习问题, 最终都是一个数值优化问题. 谈到机器学习, 就没办法不谈数值优化. 机器学习中最常用的 <em>梯度下降</em> , <em>牛顿法</em> , <em>拟牛顿法</em> 这些都属于数值优化. 本文从基本概念开始, 简单的介绍数值优化问题.</p>
+<h4 id="关于本文"><a href="#关于本文" class="headerlink" title="关于本文"></a>关于本文</h4><ul>
+<li>内容概括: 数值优化的基本概念</li>
+<li>阅读时间: 1 到 3 分钟</li>
+<li>面向人群: 机器学习的初学者</li>
 </ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">第一个</th>
-<th style="text-align:center">第二个</th>
-<th style="text-align:center">第三个</th>
-<th style="text-align:center">第四个</th>
-<th style="text-align:center">第五个</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">1</td>
-<td style="text-align:center">weq</td>
-<td style="text-align:center">qweqw</td>
-<td style="text-align:center">qweqw</td>
-<td style="text-align:center">qwe</td>
-</tr>
-<tr>
-<td style="text-align:center">2</td>
-<td style="text-align:center">wqeqw</td>
-<td style="text-align:center">wqeqw</td>
-<td style="text-align:center">qweq</td>
-<td style="text-align:center">qwe</td>
-</tr>
-</tbody>
-</table>
-<p>  ​</p>
-<p>这是结尾。没有了。</p>
+<h3 id="什么是优化问题"><a href="#什么是优化问题" class="headerlink" title="什么是优化问题"></a>什么是优化问题</h3><p>通俗地来讲, 优化问题就是, 求函数 $f(x)$ 在取得最小值 (或最大值) 时的  $x$ . 有时候, $x$ 的取值范围会有一定的限制, 这种情况叫做 <strong>约束优化</strong> ; 如果 $x$ 的取值没有限制, 那么就叫做 <strong>无约束优化</strong> . 优化问题表示成标准形式如下:</p>
+<script type="math/tex; mode=display">
+\begin{eqnarray*}
+minimize \quad &&f(x) \tag{1} \\
+subject \; to \quad &&C_i(x)=0 \, , i \in E \tag{2} \\
+&&C_j(x) \geq 0 \, , i \in I\tag{3}
+\end{eqnarray*}</script><p>其中 $x$ 为 <strong>优化变量</strong> , $(1)$ 为 <strong>目标函数</strong> , $(2)$ 为 <strong>等式约束</strong> , $(3)$ 为 <strong>不等式约束</strong> . 当 $f(x)$ 有最小值时, $x=x^*$, 称 $x^*$ 为 该优化问题的 <strong>解</strong> . </p>
+<p>其实我们很早就接触过优化问题, 当 $f(x)​$ 为抛物线时, 求抛物线的最低点的 $x​$ 值, 就是高中数学里经常遇到的一个问题. 但是实际问题里的 $f(x)​$ 的形式比这个复杂得多, 所以需要专门的方法来求解它取最小值时的 $x​$ .</p>
+<h3 id="机器学习为什么需要数值优化"><a href="#机器学习为什么需要数值优化" class="headerlink" title="机器学习为什么需要数值优化"></a>机器学习为什么需要数值优化</h3><p>在机器学习问题特别是监督学习问题中, 假设训练数据为 $(x_i, y_i), 1 \leq i \leq N$ (例如 $x$ 为房子大小, $y$ 为房价, 希望建立模型, 根据房子大小预测对应的房价) . 模型为 $f(x;\theta)$ , $\theta$ 为模型的参数, $y’$为模型的预测值, 即 $y’=f(x;\theta)$ .我们的目标是从训练数据中学习到 “最合适” 的 $\theta$ , 使 $f(x;\theta)$ 能够对未知数据做出较好的预测, 也就是希望预测值 $y’$ 与 真实值 $y$ 越接近越好. 为了衡量 $y’$ 与 $y$ 的误差, 定义关于 $y$ 和 $y’$ 的 <strong>损失函数</strong> 为 $L(y, y’)$ . 损失函数当然越小越好, 所以问题就转化为了一个数值优化问题:</p>
+<script type="math/tex; mode=display">
+minimize \quad L(y, y') = minimize \quad L(y, f(x;\theta)) \tag{4}</script><p>对于训练数据, $x$ 和 $y$ 都是已知的, 只有参数 $\theta$ 未知, 也就是希望求解在预测的误差 (损失函数) 最小时的模型参数 $\theta$ .知道了模型的参数 $\theta$ 后, 就能根据 $x$ 来预测 $y$ 值. 考虑到训练数据有多个, 通常把 $(4)式$ 写作以下形式:</p>
+<script type="math/tex; mode=display">
+minimize \quad \sum_{i=1}^NL(y_i, f(x_i; \theta)) \tag{5}</script><p>最终机器学习问题转化为了 $(5)$ 式, 这是一个无约束 (没有限制条件) 优化问题. 优化变量是机器学习中模型的参数 $\theta$ , 目标函数是模型的损失函数 $L$ . 求解出这个优化问题, 就能得到机器学习的模型, 并对未知数据进行预测. </p>
+<p>下次继续讲无约束优化的具体方法, 解的性质, 收敛性和其他相关问题.</p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;这是一个标题&quot;&gt;&lt;a href=&quot;#这是一个标题&quot; class=&quot;headerlink&quot; title=&quot;这是一个标题&quot;&gt;&lt;/a&gt;这是一个标题&lt;/h2&gt;&lt;p&gt;这是一段介绍&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;&lt;h4 id=&quot;这是一个子标题&quot;&gt;&lt;a href=&quot;#这是一个子标题
+      &lt;p&gt;机器学习需要较多的数学基础, &lt;strong&gt;数值优化&lt;/strong&gt; 和 &lt;strong&gt;统计&lt;/strong&gt; 是机器学习中应用最多的两门数学. 大部分的机器学习问题, 最终都是一个数值优化问题. 谈到机器学习, 就没办法不谈数值优化. 机器学习中最常用的 &lt;em&gt;梯
     
     </summary>
     
     
+      <category term="数值优化" scheme="http://yoursite.com/tags/%E6%95%B0%E5%80%BC%E4%BC%98%E5%8C%96/"/>
+    
       <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="凸优化" scheme="http://yoursite.com/tags/%E5%87%B8%E4%BC%98%E5%8C%96/"/>
+    
+      <category term="深度学习" scheme="http://yoursite.com/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   

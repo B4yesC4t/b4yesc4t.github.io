@@ -28,18 +28,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <meta name="theme-color" content= #93b658 >
-    <title>test-2 | Bsdr's Blog </title>
+    <title>机器学习的数学基础: 数值优化(一) | Bsdr's Blog </title>
 
     
-        <meta name="keywords" content=","/>
+        <meta name="keywords" content=",,,,,"/>
         
 
     
-    <meta name="description" content="这是一个标题这是一段介绍
-
-这是一个子标题这是一个数学公式 :
-$$ y = \sum^N_{i=1} x_{i}^2 $$ 
-$$ \cos 2\theta = \cos^2 \theta -..."/>
+    <meta name="description" content="机器学习需要较多的数学基础, 数值优化 和 统计 是机器学习中应用最多的两门数学. 大部分的机器学习问题, 最终都是一个数值优化问题. 谈到机器学习, 就没办法不谈数值优化. 机器学习中最常用的..."/>
 
     
         <link rel="shortcut icon" type="image/x-icon" href="/image/favicon.ico?v="/>
@@ -125,11 +121,11 @@ $$ \cos 2\theta = \cos^2 \theta -..."/>
     <div id="post">
         <div class="container">
             <div id="post-header" class="center">
-                <h1 class="center">test-2</h1>
+                <h1 class="center">机器学习的数学基础: 数值优化(一)</h1>
                 <span class="post-date center">
                     <i class="fa fa-calendar"></i>
-                    <time datetime="2017-04-06T04:13:28.000Z">
-                        2017-04-06
+                    <time datetime="2017-04-27T10:46:16.000Z">
+                        2017-04-27
                     </time>
                 </span>
 
@@ -147,49 +143,26 @@ $$ \cos 2\theta = \cos^2 \theta -..."/>
             <article>
                 <div class="content">
                     
-    <h2 id="这是一个标题"><a href="#这是一个标题" class="headerlink" title="这是一个标题"></a>这是一个标题</h2><p>这是一段介绍</p>
-<ul>
-<li><h4 id="这是一个子标题"><a href="#这是一个子标题" class="headerlink" title="这是一个子标题"></a>这是一个子标题</h4><p>这是一个数学公式 :</p>
-<p>$$ y = \sum^N_{i=1} x_{i}^2 $$ </p>
-<p>$$ \cos 2\theta = \cos^2 \theta - \sin^2 \theta =  2 \cos^2 \theta - 1 $$</p>
-<p>这又是一个公式：</p>
-<p>$$ y = x $$</p>
-<p>这是一个图片</p>
-<p><img src="/image/photo.jpg" alt="我是一张图片"> 。</p>
-</li>
-<li><h4 id="这是第二个子标题"><a href="#这是第二个子标题" class="headerlink" title="这是第二个子标题"></a>这是第二个子标题</h4><p>这是一个表格：</p>
-<p>​</p>
-</li>
+    <p>机器学习需要较多的数学基础, <strong>数值优化</strong> 和 <strong>统计</strong> 是机器学习中应用最多的两门数学. 大部分的机器学习问题, 最终都是一个数值优化问题. 谈到机器学习, 就没办法不谈数值优化. 机器学习中最常用的 <em>梯度下降</em> , <em>牛顿法</em> , <em>拟牛顿法</em> 这些都属于数值优化. 本文从基本概念开始, 简单的介绍数值优化问题.</p>
+<h4 id="关于本文"><a href="#关于本文" class="headerlink" title="关于本文"></a>关于本文</h4><ul>
+<li>内容概括: 数值优化的基本概念</li>
+<li>阅读时间: 1 到 3 分钟</li>
+<li>面向人群: 机器学习的初学者</li>
 </ul>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">第一个</th>
-<th style="text-align:center">第二个</th>
-<th style="text-align:center">第三个</th>
-<th style="text-align:center">第四个</th>
-<th style="text-align:center">第五个</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">1</td>
-<td style="text-align:center">weq</td>
-<td style="text-align:center">qweqw</td>
-<td style="text-align:center">qweqw</td>
-<td style="text-align:center">qwe</td>
-</tr>
-<tr>
-<td style="text-align:center">2</td>
-<td style="text-align:center">wqeqw</td>
-<td style="text-align:center">wqeqw</td>
-<td style="text-align:center">qweq</td>
-<td style="text-align:center">qwe</td>
-</tr>
-</tbody>
-</table>
-<p>  ​</p>
-<p>这是结尾。没有了。</p>
+<h3 id="什么是优化问题"><a href="#什么是优化问题" class="headerlink" title="什么是优化问题"></a>什么是优化问题</h3><p>通俗地来讲, 优化问题就是, 求函数 $f(x)$ 在取得最小值 (或最大值) 时的  $x$ . 有时候, $x$ 的取值范围会有一定的限制, 这种情况叫做 <strong>约束优化</strong> ; 如果 $x$ 的取值没有限制, 那么就叫做 <strong>无约束优化</strong> . 优化问题表示成标准形式如下:</p>
+<script type="math/tex; mode=display">
+\begin{eqnarray*}
+minimize \quad &&f(x) \tag{1} \\
+subject \; to \quad &&C_i(x)=0 \, , i \in E \tag{2} \\
+&&C_j(x) \geq 0 \, , i \in I\tag{3}
+\end{eqnarray*}</script><p>其中 $x$ 为 <strong>优化变量</strong> , $(1)$ 为 <strong>目标函数</strong> , $(2)$ 为 <strong>等式约束</strong> , $(3)$ 为 <strong>不等式约束</strong> . 当 $f(x)$ 有最小值时, $x=x^*$, 称 $x^*$ 为 该优化问题的 <strong>解</strong> . </p>
+<p>其实我们很早就接触过优化问题, 当 $f(x)​$ 为抛物线时, 求抛物线的最低点的 $x​$ 值, 就是高中数学里经常遇到的一个问题. 但是实际问题里的 $f(x)​$ 的形式比这个复杂得多, 所以需要专门的方法来求解它取最小值时的 $x​$ .</p>
+<h3 id="机器学习为什么需要数值优化"><a href="#机器学习为什么需要数值优化" class="headerlink" title="机器学习为什么需要数值优化"></a>机器学习为什么需要数值优化</h3><p>在机器学习问题特别是监督学习问题中, 假设训练数据为 $(x_i, y_i), 1 \leq i \leq N$ (例如 $x$ 为房子大小, $y$ 为房价, 希望建立模型, 根据房子大小预测对应的房价) . 模型为 $f(x;\theta)$ , $\theta$ 为模型的参数, $y’$为模型的预测值, 即 $y’=f(x;\theta)$ .我们的目标是从训练数据中学习到 “最合适” 的 $\theta$ , 使 $f(x;\theta)$ 能够对未知数据做出较好的预测, 也就是希望预测值 $y’$ 与 真实值 $y$ 越接近越好. 为了衡量 $y’$ 与 $y$ 的误差, 定义关于 $y$ 和 $y’$ 的 <strong>损失函数</strong> 为 $L(y, y’)$ . 损失函数当然越小越好, 所以问题就转化为了一个数值优化问题:</p>
+<script type="math/tex; mode=display">
+minimize \quad L(y, y') = minimize \quad L(y, f(x;\theta)) \tag{4}</script><p>对于训练数据, $x$ 和 $y$ 都是已知的, 只有参数 $\theta$ 未知, 也就是希望求解在预测的误差 (损失函数) 最小时的模型参数 $\theta$ .知道了模型的参数 $\theta$ 后, 就能根据 $x$ 来预测 $y$ 值. 考虑到训练数据有多个, 通常把 $(4)式$ 写作以下形式:</p>
+<script type="math/tex; mode=display">
+minimize \quad \sum_{i=1}^NL(y_i, f(x_i; \theta)) \tag{5}</script><p>最终机器学习问题转化为了 $(5)$ 式, 这是一个无约束 (没有限制条件) 优化问题. 优化变量是机器学习中模型的参数 $\theta$ , 目标函数是模型的损失函数 $L$ . 求解出这个优化问题, 就能得到机器学习的模型, 并对未知数据进行预测. </p>
+<p>下次继续讲无约束优化的具体方法, 解的性质, 收敛性和其他相关问题.</p>
 
 
                 </div>
@@ -199,7 +172,23 @@ $$ \cos 2\theta = \cos^2 \theta -..."/>
             <div class="post-tags center">
                 
                     <span class="post-tag chip">
+                        <a href="/tags/数值优化/">数值优化</a>
+                   </span>
+                
+                    <span class="post-tag chip">
                         <a href="/tags/算法/">算法</a>
+                   </span>
+                
+                    <span class="post-tag chip">
+                        <a href="/tags/机器学习/">机器学习</a>
+                   </span>
+                
+                    <span class="post-tag chip">
+                        <a href="/tags/凸优化/">凸优化</a>
+                   </span>
+                
+                    <span class="post-tag chip">
+                        <a href="/tags/深度学习/">深度学习</a>
                    </span>
                 
             </div>
@@ -211,11 +200,6 @@ $$ \cos 2\theta = \cos^2 \theta -..."/>
 
             <div class="post-footer">
                 
-                
-                    <a class="right" href="/2017/04/06/基于AI的WAF：分类还是异常检测/" rel="next" title="基于AI的WAF：分类还是异常检测">
-                        基于AI的WAF：分类还是异常检测<i
-                                class="fa fa-arrow-circle-right fa-3x "></i>
-                    </a>
                 
             </div>
         </div>
