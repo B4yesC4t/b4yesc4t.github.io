@@ -1,148 +1,190 @@
-<!doctype html>
-<html lang="">
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
+<!DOCTYPE html>
+<html>
 <head>
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-    <meta name="theme-color" content= #93b658 >
-    <title>网络安全中的机器对抗 | Bsdr's Blog </title>
-
-    
-        <meta name="keywords" content=",,,,"/>
-        
-
-    
-    <meta name="description" content="自从 DeepMind 的 AlphaGo 横空出世，战胜人类围棋冠军之后，机器学习，受到了人们的空前关注。机器学习开始被广泛的应用到从教育到医疗，从翻译到无人驾驶的各个领域中。既然 AI 可以..."/>
-
-    
-        <link rel="shortcut icon" type="image/x-icon" href="/image/favicon.ico?v="/>
-    
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
 
     
 
+    <title>
+      网络安全中的机器对抗 | Bsdr&#39;s Blog 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     
-        <link rel="alternate" href="/" title="Bsdr's Blog" type="application/atom+xml"/>
+      <meta name="author" content="bsdr">
+    
     
 
+    <meta name="description" content="自从 DeepMind 的 AlphaGo 横空出世，战胜人类围棋冠军之后，机器学习，受到了人们的空前关注。机器学习开始被广泛的应用到从教育到医疗，从翻译到无人驾驶的各个领域中。既然 AI 可以利用传感器感知环境，作出判断，驾驶汽车，那为什么不可以让 AI 控制漏洞扫描器，感知系统环境，从而进行渗透呢？同样地，既然 A">
+<meta name="keywords" content="机器学习,深度学习,网络安全,对抗样本">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络安全中的机器对抗 | Bsdr&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/2017/05/09/网络安全中的机器对抗/index.html">
+<meta property="og:site_name" content="Bsdr&#39;s Blog">
+<meta property="og:description" content="自从 DeepMind 的 AlphaGo 横空出世，战胜人类围棋冠军之后，机器学习，受到了人们的空前关注。机器学习开始被广泛的应用到从教育到医疗，从翻译到无人驾驶的各个领域中。既然 AI 可以利用传感器感知环境，作出判断，驾驶汽车，那为什么不可以让 AI 控制漏洞扫描器，感知系统环境，从而进行渗透呢？同样地，既然 AI 能够根据人们的胸透图和其他症状，判断是否患病，那为什么不可以让 AI 根据用">
+<meta property="og:image" content="http://a.36krcnd.com/photo/2014/fcdf013207135b96b298e6d4f33dc461.jpg!heading">
+<meta property="og:image" content="https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=1714656951,178400924&fm=23&gp=0.jpg">
+<meta property="og:image" content="http://yoursite.com/image/waf结构.png">
+<meta property="og:updated_time" content="2017-05-09T12:19:32.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="网络安全中的机器对抗 | Bsdr&#39;s Blog">
+<meta name="twitter:description" content="自从 DeepMind 的 AlphaGo 横空出世，战胜人类围棋冠军之后，机器学习，受到了人们的空前关注。机器学习开始被广泛的应用到从教育到医疗，从翻译到无人驾驶的各个领域中。既然 AI 可以利用传感器感知环境，作出判断，驾驶汽车，那为什么不可以让 AI 控制漏洞扫描器，感知系统环境，从而进行渗透呢？同样地，既然 AI 能够根据人们的胸透图和其他症状，判断是否患病，那为什么不可以让 AI 根据用">
+<meta name="twitter:image" content="http://a.36krcnd.com/photo/2014/fcdf013207135b96b298e6d4f33dc461.jpg!heading">
     
-        <link rel="stylesheet" href="/lib/social-share.js/dist/css/share.min.css">
     
-    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/lib/materialize/dist/css/materialize.min.css">
-    <link rel="stylesheet" href="/lib/animate.css/animate.min.css">
-    <link rel="stylesheet" href="/css/post/atom-one-light.css">
-    <link rel="stylesheet" href="/css/pteris.css">
+    
+      <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
-    
-        <link rel="stylesheet" href="/css/post.css">
-    
-
-    
-        <link rel="stylesheet" href="/lib/lightgallery.js/dist/css/lightgallery.min.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-    
-
-    
 </head>
-
 <body>
 
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
-    
-        <div class="header-fixed">
-    <nav class="white lime-text lighten-1 " role="navigation">
-        <div class="nav-wrapper container">
-            <div id="logo-container">
-                <a href="/">
-                    
-                    <span class="brand-logo">Bsdr's Blog</span>
-                </a>
-            </div>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
 
-            <ul class="right hide-on-med-and-down">
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Bsdr&#39;s Blog</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          Cyber-security &amp; Machine Learning
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
                 
-                    <li><a href="/">Home</a></li>
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
                 
-                    <li><a href="/archives">Archives</a></li>
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
                 
-                    <li><a href="/about">About</a></li>
-                
-                    <li><a href="/atom.xml">RSS</a></li>
-                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
             </ul>
-            <a href="#" data-activates="nav-mobile" class="button-collapse">
-                <i class="fa fa-bars green-text"></i></a>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
         </div>
-    </nav>
-</div>
 
-<ul id="nav-mobile" class="side-nav">
-    
-        <li><a href="/">Home</a></li>
-    
-        <li><a href="/archives">Archives</a></li>
-    
-        <li><a href="/about">About</a></li>
-    
-        <li><a href="/atom.xml">RSS</a></li>
-    
-</ul>
+      </div>
 
+    </div>
 
-
-    
+    <div class="panel-cover--overlay"></div>
+  </div>
 </header>
 
-<main>
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">网络安全中的机器对抗</h1>
+
     
 
-    <div id="post">
-        <div class="container">
-            <div id="post-header" class="center">
-                <h1 class="center">网络安全中的机器对抗</h1>
-                <span class="post-date center">
-                    <i class="fa fa-calendar"></i>
-                    <time datetime="2017-05-09T12:15:34.000Z">
-                        2017-05-09
-                    </time>
-                </span>
+    <div class="post-meta">
+      <time datetime="2017-05-09" class="post-meta__date date">2017-05-09</time> 
 
-                
+      <span class="post-meta__tags tags">
 
-                
-                    <div class="post-gallery">
-                        <div id="lightgallery">
-                            
-                        </div>
-                    </div>
-                
-            </div>
+          
 
-            <article>
-                <div class="content">
-                    
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/对抗样本/">对抗样本</a>, <a class="tags-link" href="/tags/机器学习/">机器学习</a>, <a class="tags-link" href="/tags/深度学习/">深度学习</a>, <a class="tags-link" href="/tags/网络安全/">网络安全</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
     <p>自从 <em>DeepMind</em> 的 <em>AlphaGo</em> 横空出世，战胜人类围棋冠军之后，机器学习，受到了人们的空前关注。机器学习开始被广泛的应用到从教育到医疗，从翻译到无人驾驶的各个领域中。既然 <em>AI</em> 可以利用传感器感知环境，作出判断，驾驶汽车，那为什么不可以让 <em>AI</em> 控制漏洞扫描器，感知系统环境，从而进行渗透呢？同样地，既然 <em>AI</em> 能够根据人们的胸透图和其他症状，判断是否患病，那为什么不可以让 <em>AI</em> 根据用户的行为特征，判断用户是否合法呢？<strong>我们完全可以利用机器学习来解决安全问题。</strong></p>
 <p><img src="http://a.36krcnd.com/photo/2014/fcdf013207135b96b298e6d4f33dc461.jpg!heading" alt="无人驾驶汽车的环境感知系统"></p>
 <p>十年前， <em>WAF</em> (Web 应用防火墙)和 <em>IDS</em> (入侵检测系统)就是基于规则的，到今天，市场上绝大多数的 <em>WAF</em> 和 <em>IDS</em>  还是基于规则的，它们需要人为的根据安全专家们的经验和已知的漏洞去编写规则：当出现 xx 字段，或者存在 xx 特征，就认为该条记录属于攻击行为。对于新出现的漏洞，由于不存在对应规则，所以它们完全没有办法检测。<strong>但是，利用机器学习是可以检测到的。</strong> 如何检测，下次再说。抵御未知威胁，这是机器学习相对传统的规则的一大优势，也是我们最需要机器学习的地方。</p>
@@ -154,91 +196,82 @@
 <p>除了强化学习以外, <strong>对抗样本问题 (<em>Adversarial Example</em>)</strong> 在对于安全也有较大意义. 对抗样本问题由 Szegedy 在2014年提出（论文：<em>Intriguing properties of neural networks，</em>不给地址了，可以直接上arxiv搜<em>）。</em>Szegedy发现，<strong>对于多种机器学习模型，在正常的输入样本中加入细微的、肉眼无法察觉的干扰，可以使模型发生误判。</strong>他将这种添加了微小干扰的样本称为对抗样本（<em>Adversarial Examples）。</em>某一模型的对抗样本，对使用相同数据集训练的其他模型都有效，对使用同一数据集的不同子集训练的模型也有效（这后来被称为对抗样本的迁移性）。并且利用对抗样本去训练模型，可以提高模型的泛化能力。由于对抗样本的迁移性, 我们能够对未知的机器学习系统进行攻击.  这种攻击方法在 <em>DEFCON 14</em> 的 <strong>Machine Duping 101</strong> 项目进行了相关展示.</p>
 <p><strong>机器学习应用到安全领域，这是未来的趋势，无论是应用到攻击还是防御, 都会带来翻天覆地的变化. 但是目前看来, 我们还有很长的路要走。</strong></p>
 
+  </section>
 
-                </div>
-            </article>
+  <section class="post-comments">
 
-
-            <div class="post-tags center">
-                
-                    <span class="post-tag chip">
-                        <a href="/tags/机器学习/">机器学习</a>
-                   </span>
-                
-                    <span class="post-tag chip">
-                        <a href="/tags/深度学习/">深度学习</a>
-                   </span>
-                
-                    <span class="post-tag chip">
-                        <a href="/tags/网络安全/">网络安全</a>
-                   </span>
-                
-                    <span class="post-tag chip">
-                        <a href="/tags/对抗样本/">对抗样本</a>
-                   </span>
-                
-            </div>
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
 
 
-            <div class="social-share" data-mobile-sites="weibo,qq,qzone,facebook,twitter">
-                <span id="share-to">Share to</span>
-            </div>
+</article>
 
-            <div class="post-footer">
-                
-                    <a class="left" href="/2017/05/07/基于机器学习的WAF的探究-一/" rel="prev" title="基于机器学习的WAF的探究(一)">
-                        <i class="fa fa-arrow-circle-left fa-3x" aria-hidden="true"></i>
-                        <span>  基于机器学习的WAF的探究(一)</span>
-                    </a>
-                
-                
-            </div>
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
         </div>
     </div>
 
-
-</main>
-
-<footer>
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
     
-        <footer class="page-footer">
-    <div class="footer-copyright">
-        <div class="container">
-            <div>© 2017 Copyright Bsdr
-                <span class="right">
-                powered by
-                <a href="http://hexo.io">hexo</a>.
-                </span>
-            </div>
-        </div>
-    </div>
-    
-</footer>
 
     
-</footer>
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
 
 
-    <script src="/lib/jquery/dist/jquery.min.js"></script>
-<script src="/lib/materialize/dist/js/materialize.min.js"></script>
-<script src="/lib/headroom.js/dist/headroom.min.js"></script>
-<script src="/lib/headroom.js/dist/jQuery.headroom.min.js"></script>
-<script src="/lib/highlight/src/highlight.js"></script>
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
 
 
-    <script src="/lib/social-share.js/dist/js/share.min.js"></script>
+    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=65184760" charset="UTF-8"></script>
 
 
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]--><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
 
-<script src="/js/pteris.js"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
 
-
-    <script src="/lib/lightgallery.js/dist/js/lightgallery.min.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
-
-
-
-
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 
 </body>
 </html>

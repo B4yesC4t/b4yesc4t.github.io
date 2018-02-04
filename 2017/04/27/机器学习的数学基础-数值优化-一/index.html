@@ -1,148 +1,186 @@
-<!doctype html>
-<html lang="">
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
-
-
-
-
+<!DOCTYPE html>
+<html>
 <head>
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
-    <meta name="theme-color" content= #93b658 >
-    <title>机器学习的数学基础: 数值优化(一) | Bsdr's Blog </title>
-
-    
-        <meta name="keywords" content=",,,,,"/>
-        
-
-    
-    <meta name="description" content="机器学习需要较多的数学基础, 数值优化 和 统计 是机器学习中应用最多的两门数学. 大部分的机器学习问题, 最终都是一个数值优化问题. 谈到机器学习, 就没办法不谈数值优化. 机器学习中最常用的..."/>
-
-    
-        <link rel="shortcut icon" type="image/x-icon" href="/image/favicon.ico?v="/>
-    
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
 
     
 
+    <title>
+      机器学习的数学基础: 数值优化(一) | Bsdr&#39;s Blog 
+    </title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     
-        <link rel="alternate" href="/" title="Bsdr's Blog" type="application/atom+xml"/>
+      <meta name="author" content="bsdr">
+    
     
 
+    <meta name="description" content="机器学习需要较多的数学基础, 数值优化 和 统计 是机器学习中应用最多的两门数学. 大部分的机器学习问题, 最终都是一个数值优化问题. 谈到机器学习, 就没办法不谈数值优化. 机器学习中最常用的 梯度下降 , 牛顿法 , 拟牛顿法 这些都属于数值优化. 本文从基本概念开始, 简单的介绍数值优化问题. 关于本文 内容概括">
+<meta name="keywords" content="机器学习,深度学习,数值优化,算法,凸优化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="机器学习的数学基础: 数值优化(一) | Bsdr&#39;s Blog">
+<meta property="og:url" content="http://yoursite.com/2017/04/27/机器学习的数学基础-数值优化-一/index.html">
+<meta property="og:site_name" content="Bsdr&#39;s Blog">
+<meta property="og:description" content="机器学习需要较多的数学基础, 数值优化 和 统计 是机器学习中应用最多的两门数学. 大部分的机器学习问题, 最终都是一个数值优化问题. 谈到机器学习, 就没办法不谈数值优化. 机器学习中最常用的 梯度下降 , 牛顿法 , 拟牛顿法 这些都属于数值优化. 本文从基本概念开始, 简单的介绍数值优化问题. 关于本文 内容概括: 数值优化的基本概念 阅读时间: 1 到 3 分钟 面向人群: 机器学习的初学">
+<meta property="og:updated_time" content="2017-04-27T12:11:40.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="机器学习的数学基础: 数值优化(一) | Bsdr&#39;s Blog">
+<meta name="twitter:description" content="机器学习需要较多的数学基础, 数值优化 和 统计 是机器学习中应用最多的两门数学. 大部分的机器学习问题, 最终都是一个数值优化问题. 谈到机器学习, 就没办法不谈数值优化. 机器学习中最常用的 梯度下降 , 牛顿法 , 拟牛顿法 这些都属于数值优化. 本文从基本概念开始, 简单的介绍数值优化问题. 关于本文 内容概括: 数值优化的基本概念 阅读时间: 1 到 3 分钟 面向人群: 机器学习的初学">
     
-        <link rel="stylesheet" href="/lib/social-share.js/dist/css/share.min.css">
     
-    <link rel="stylesheet" href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/lib/materialize/dist/css/materialize.min.css">
-    <link rel="stylesheet" href="/lib/animate.css/animate.min.css">
-    <link rel="stylesheet" href="/css/post/atom-one-light.css">
-    <link rel="stylesheet" href="/css/pteris.css">
+    
+      <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
+    
+    <link rel="stylesheet" href="/css/uno.css">
+    <link rel="stylesheet" href="/css/highlight.css">
+    <link rel="stylesheet" href="/css/archive.css">
+    <link rel="stylesheet" href="/css/china-social-icon.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
 
-    
-        <link rel="stylesheet" href="/css/post.css">
-    
-
-    
-        <link rel="stylesheet" href="/lib/lightgallery.js/dist/css/lightgallery.min.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-    
-
-    
 </head>
-
 <body>
 
-<!-- hexo-inject:begin --><!-- hexo-inject:end --><header>
-    
-        <div class="header-fixed">
-    <nav class="white lime-text lighten-1 " role="navigation">
-        <div class="nav-wrapper container">
-            <div id="logo-container">
-                <a href="/">
-                    
-                    <span class="brand-logo">Bsdr's Blog</span>
-                </a>
-            </div>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span class="mobile btn-mobile-menu">
+        <i class="icon icon-list btn-mobile-menu__icon"></i>
+        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
+    </span>
 
-            <ul class="right hide-on-med-and-down">
+    
+
+<header class="panel-cover panel-cover--collapsed">
+
+
+  <div class="panel-main">
+
+  
+    <div class="panel-main__inner panel-inverted">
+    <div class="panel-main__content">
+
+        
+
+        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Bsdr&#39;s Blog</a></h1>
+        <hr class="panel-cover__divider" />
+
+        
+        <p class="panel-cover__description">
+          Cyber-security &amp; Machine Learning
+        </p>
+        <hr class="panel-cover__divider panel-cover__divider--secondary" />
+        
+
+        <div class="navigation-wrapper">
+
+          <nav class="cover-navigation cover-navigation--primary">
+            <ul class="navigation">
+
+              
                 
-                    <li><a href="/">Home</a></li>
+                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
+              
                 
-                    <li><a href="/archives">Archives</a></li>
+                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
+              
                 
-                    <li><a href="/about">About</a></li>
-                
-                    <li><a href="/atom.xml">RSS</a></li>
-                
+                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
+              
+
             </ul>
-            <a href="#" data-activates="nav-mobile" class="button-collapse">
-                <i class="fa fa-bars green-text"></i></a>
+          </nav>
+
+          <!-- ----------------------------
+To add a new social icon simply duplicate one of the list items from below
+and change the class in the <i> tag to match the desired social network
+and then add your link to the <a>. Here is a full list of social network
+classes that you can use:
+
+    icon-social-500px
+    icon-social-behance
+    icon-social-delicious
+    icon-social-designer-news
+    icon-social-deviant-art
+    icon-social-digg
+    icon-social-dribbble
+    icon-social-facebook
+    icon-social-flickr
+    icon-social-forrst
+    icon-social-foursquare
+    icon-social-github
+    icon-social-google-plus
+    icon-social-hi5
+    icon-social-instagram
+    icon-social-lastfm
+    icon-social-linkedin
+    icon-social-medium
+    icon-social-myspace
+    icon-social-path
+    icon-social-pinterest
+    icon-social-rdio
+    icon-social-reddit
+    icon-social-skype
+    icon-social-spotify
+    icon-social-stack-overflow
+    icon-social-steam
+    icon-social-stumbleupon
+    icon-social-treehouse
+    icon-social-tumblr
+    icon-social-twitter
+    icon-social-vimeo
+    icon-social-xbox
+    icon-social-yelp
+    icon-social-youtube
+    icon-social-zerply
+    icon-mail
+
+-------------------------------->
+
+<!-- add social info here -->
+
+
+
         </div>
-    </nav>
-</div>
 
-<ul id="nav-mobile" class="side-nav">
-    
-        <li><a href="/">Home</a></li>
-    
-        <li><a href="/archives">Archives</a></li>
-    
-        <li><a href="/about">About</a></li>
-    
-        <li><a href="/atom.xml">RSS</a></li>
-    
-</ul>
+      </div>
 
+    </div>
 
-
-    
+    <div class="panel-cover--overlay"></div>
+  </div>
 </header>
 
-<main>
+    <div class="content-wrapper">
+        <div class="content-wrapper__inner entry">
+            
+
+<article class="post-container post-container--single">
+
+  <header class="post-header">
+    
+    <h1 class="post-title">机器学习的数学基础: 数值优化(一)</h1>
+
     
 
-    <div id="post">
-        <div class="container">
-            <div id="post-header" class="center">
-                <h1 class="center">机器学习的数学基础: 数值优化(一)</h1>
-                <span class="post-date center">
-                    <i class="fa fa-calendar"></i>
-                    <time datetime="2017-04-27T10:46:16.000Z">
-                        2017-04-27
-                    </time>
-                </span>
+    <div class="post-meta">
+      <time datetime="2017-04-27" class="post-meta__date date">2017-04-27</time> 
 
-                
+      <span class="post-meta__tags tags">
 
-                
-                    <div class="post-gallery">
-                        <div id="lightgallery">
-                            
-                        </div>
-                    </div>
-                
-            </div>
+          
 
-            <article>
-                <div class="content">
-                    
+          
+             &#8226; 标签:
+            <font class="tags">
+              <a class="tags-link" href="/tags/凸优化/">凸优化</a>, <a class="tags-link" href="/tags/数值优化/">数值优化</a>, <a class="tags-link" href="/tags/机器学习/">机器学习</a>, <a class="tags-link" href="/tags/深度学习/">深度学习</a>, <a class="tags-link" href="/tags/算法/">算法</a>
+            </font>
+          
+
+      </span>
+    </div>
+    
+    
+
+  </header>
+
+  <section id="post-content" class="article-content post">
     <p>机器学习需要较多的数学基础, <strong>数值优化</strong> 和 <strong>统计</strong> 是机器学习中应用最多的两门数学. 大部分的机器学习问题, 最终都是一个数值优化问题. 谈到机器学习, 就没办法不谈数值优化. 机器学习中最常用的 <em>梯度下降</em> , <em>牛顿法</em> , <em>拟牛顿法</em> 这些都属于数值优化. 本文从基本概念开始, 简单的介绍数值优化问题.</p>
 <h4 id="关于本文"><a href="#关于本文" class="headerlink" title="关于本文"></a>关于本文</h4><ul>
 <li>内容概括: 数值优化的基本概念</li>
@@ -164,90 +202,65 @@ minimize \quad L(y, y') = minimize \quad L(y, f(x;\theta)) \tag{4}</script><p>�
 minimize \quad \sum_{i=1}^NL(y_i, f(x_i; \theta)) \tag{5}</script><p>最终机器学习问题转化为了 $(5)$ 式, 这是一个无约束 (没有限制条件) 优化问题. 优化变量是机器学习中模型的参数 $\theta$ , 目标函数是模型的损失函数 $L$ . 求解出这个优化问题, 就能得到机器学习的模型, 并对未知数据进行预测. </p>
 <p>下次继续讲无约束优化的具体方法, 解的性质, 收敛性和其他相关问题.</p>
 
+  </section>
 
-                </div>
-            </article>
+  <section class="post-comments">
 
-
-            <div class="post-tags center">
-                
-                    <span class="post-tag chip">
-                        <a href="/tags/机器学习/">机器学习</a>
-                   </span>
-                
-                    <span class="post-tag chip">
-                        <a href="/tags/深度学习/">深度学习</a>
-                   </span>
-                
-                    <span class="post-tag chip">
-                        <a href="/tags/数值优化/">数值优化</a>
-                   </span>
-                
-                    <span class="post-tag chip">
-                        <a href="/tags/算法/">算法</a>
-                   </span>
-                
-                    <span class="post-tag chip">
-                        <a href="/tags/凸优化/">凸优化</a>
-                   </span>
-                
-            </div>
+    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
+    
+</section>
 
 
-            <div class="social-share" data-mobile-sites="weibo,qq,qzone,facebook,twitter">
-                <span id="share-to">Share to</span>
-            </div>
+</article>
 
-            <div class="post-footer">
-                
-                
-                    <a class="right" href="/2017/05/07/基于机器学习的WAF的探究-一/" rel="next" title="基于机器学习的WAF的探究(一)">
-                        基于机器学习的WAF的探究(一)<i
-                                class="fa fa-arrow-circle-right fa-3x "></i>
-                    </a>
-                
-            </div>
+
+            <footer class="footer">
+
+    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
+    
+</footer>
         </div>
     </div>
 
-
-</main>
-
-<footer>
+    <!-- js files -->
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/main.js"></script>
+    <script src="/js/scale.fix.js"></script>
     
-        <footer class="page-footer">
-    <div class="footer-copyright">
-        <div class="container">
-            <div>© 2017 Copyright Bsdr
-                <span class="right">
-                powered by
-                <a href="http://hexo.io">hexo</a>.
-                </span>
-            </div>
-        </div>
-    </div>
-    
-</footer>
 
     
-</footer>
+
+    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript"> 
+        $(document).ready(function(){
+            MathJax.Hub.Config({ 
+                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
+            });
+        });
+    </script>
 
 
-    <script src="/lib/jquery/dist/jquery.min.js"></script>
-<script src="/lib/materialize/dist/js/materialize.min.js"></script>
-<script src="/lib/headroom.js/dist/headroom.min.js"></script>
-<script src="/lib/headroom.js/dist/jQuery.headroom.min.js"></script>
-<script src="/lib/highlight/src/highlight.js"></script>
+    
+
+    <script src="/js/awesome-toc.min.js"></script>
+    <script>
+        $(document).ready(function(){
+            $.awesome_toc({
+                overlay: true,
+                contentId: "post-content",
+            });
+        });
+    </script>
 
 
-    <script src="/lib/social-share.js/dist/js/share.min.js"></script>
+    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=65184760" charset="UTF-8"></script>
 
 
-
-<script src="/js/pteris.js"></script>
-
-
-    <script src="/lib/lightgallery.js/dist/js/lightgallery.min.js"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+    
+    <!--kill ie6 -->
+<!--[if IE 6]>
+  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
+<![endif]--><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -265,11 +278,6 @@ minimize \quad \sum_{i=1}^NL(y_i, f(x_i; \theta)) \tag{5}</script><p>最终机�
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
-
-
-
-
 
 </body>
 </html>
