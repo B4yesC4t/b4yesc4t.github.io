@@ -1,226 +1,295 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
+
 <head>
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
-    
-
+	<!-- hexo-inject:begin --><!-- hexo-inject:end --><link rel="bookmark"  type="image/x-icon"  href="/images/favicon.ico"/>
+	 <link rel="shortcut icon" href="/images/favicon.ico">
+	
+			
     <title>
-      About 
+    Bsdr's Blog
     </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    
+    	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    
-      <meta name="author" content="bsdr">
-    
-    
-
-    <meta name="description" content="关于博客不定期地更新机器学习相关算法的介绍，安全方面的最新进展，机器学习安全应用相关领域的论文阅读笔记，以及一些我自己的研究。 ​  关于我我现在是一名大三学生。主要从事机器学习在网络安全的应用的研究。 ​  联系方式如果你想了解更多，可以通过以下邮箱联系我： Mail:  bsdr_work@outlook.com">
-<meta name="keywords" content="“安全数据分析,人工智能,信息安全,安全算法,机器学习,Web安全,算法,深度学习,网络安全&quot;">
-<meta property="og:type" content="website">
-<meta property="og:title" content="About">
-<meta property="og:url" content="http://yoursite.com/about/index.html">
-<meta property="og:site_name" content="Bsdr&#39;s Blog">
-<meta property="og:description" content="关于博客不定期地更新机器学习相关算法的介绍，安全方面的最新进展，机器学习安全应用相关领域的论文阅读笔记，以及一些我自己的研究。 ​  关于我我现在是一名大三学生。主要从事机器学习在网络安全的应用的研究。 ​  联系方式如果你想了解更多，可以通过以下邮箱联系我： Mail:  bsdr_work@outlook.com">
-<meta property="og:updated_time" content="2017-04-06T07:29:48.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="About">
-<meta name="twitter:description" content="关于博客不定期地更新机器学习相关算法的介绍，安全方面的最新进展，机器学习安全应用相关领域的论文阅读笔记，以及一些我自己的研究。 ​  关于我我现在是一名大三学生。主要从事机器学习在网络安全的应用的研究。 ​  联系方式如果你想了解更多，可以通过以下邮箱联系我： Mail:  bsdr_work@outlook.com">
-    
-    
-    
-      <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-    
-    <link rel="stylesheet" href="/css/uno.css">
-    <link rel="stylesheet" href="/css/highlight.css">
-    <link rel="stylesheet" href="/css/archive.css">
-    <link rel="stylesheet" href="/css/china-social-icon.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
+			    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+	
 </head>
-<body>
-
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span class="mobile btn-mobile-menu">
-        <i class="icon icon-list btn-mobile-menu__icon"></i>
-        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
-    </span>
-
     
+		
+<!-- Layouts -->
 
-<header class="panel-cover panel-cover--collapsed">
 
 
-  <div class="panel-main">
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_coy.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="/" class="logo">BSDR</a>
+</header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">分类</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        <a class="category-link" href="/categories/machine-learning/">机器学习</a></li><li><a class="category-link" href="/categories/cyber-security/">网络安全</a>
+	                    </ul>
+	        </li>
+	        
+	        <!-- archives  归档   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">归档</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        <a class="archive-link" href="/archives/2017/05/">May 2017</a></li><li><a class="archive-link" href="/archives/2017/04/">April 2017</a>
+	                    </ul>
+	        </li>
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="/about/" title="简历">
+		                简历
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/paper/" title="论文">
+		                论文
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/gallery/" title="图库">
+		                图库
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/tag/" title="标签">
+		                标签
+		            </a>
+		        </li>
+		        
 
-  
-    <div class="panel-main__inner panel-inverted">
-    <div class="panel-main__content">
-
-        
-
-        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Bsdr&#39;s Blog</a></h1>
-        <hr class="panel-cover__divider" />
-
-        
-        <p class="panel-cover__description">
-          Cyber-security &amp; Machine Learning
-        </p>
-        <hr class="panel-cover__divider panel-cover__divider--secondary" />
-        
-
-        <div class="navigation-wrapper">
-
-          <nav class="cover-navigation cover-navigation--primary">
-            <ul class="navigation">
-
-              
-                
-                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
-              
-                
-                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
-              
-                
-                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
-              
 
             </ul>
-          </nav>
+            <!-- icons 图标   -->
+			<ul class="icons">
+		            
+		                <li><a href="https://github.com/b4yesc4t" class="icon fa-github"><span class="label">GitHub</span></a></li>
+		            
+		            
+		            
+		            
+			</ul>
+</nav>
 
-          <!-- ----------------------------
-To add a new social icon simply duplicate one of the list items from below
-and change the class in the <i> tag to match the desired social network
-and then add your link to the <a>. Here is a full list of social network
-classes that you can use:
-
-    icon-social-500px
-    icon-social-behance
-    icon-social-delicious
-    icon-social-designer-news
-    icon-social-deviant-art
-    icon-social-digg
-    icon-social-dribbble
-    icon-social-facebook
-    icon-social-flickr
-    icon-social-forrst
-    icon-social-foursquare
-    icon-social-github
-    icon-social-google-plus
-    icon-social-hi5
-    icon-social-instagram
-    icon-social-lastfm
-    icon-social-linkedin
-    icon-social-medium
-    icon-social-myspace
-    icon-social-path
-    icon-social-pinterest
-    icon-social-rdio
-    icon-social-reddit
-    icon-social-skype
-    icon-social-spotify
-    icon-social-stack-overflow
-    icon-social-steam
-    icon-social-stumbleupon
-    icon-social-treehouse
-    icon-social-tumblr
-    icon-social-twitter
-    icon-social-vimeo
-    icon-social-xbox
-    icon-social-yelp
-    icon-social-youtube
-    icon-social-zerply
-    icon-mail
-
--------------------------------->
-
-<!-- add social info here -->
-
-
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="panel-cover--overlay"></div>
-  </div>
-</header>
-
-    <div class="content-wrapper">
-        <div class="content-wrapper__inner entry">
-            
-
-<article class="post-container post-container--single">
-
-  <header class="post-header">
-    
-    <h1 class="post-title">About</h1>
-
-    
-
-  </header>
-
-  <section id="post-content" class="article-content post">
-    <ul>
-<li><h4 id="关于博客"><a href="#关于博客" class="headerlink" title="关于博客"></a>关于博客</h4><p>不定期地更新机器学习相关算法的介绍，安全方面的最新进展，机器学习安全应用相关领域的论文阅读笔记，以及一些我自己的研究。</p>
-<p>​</p>
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(undefined);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >About</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <h2 id="一-个人信息"><a href="#一-个人信息" class="headerlink" title="一. 个人信息"></a>一. 个人信息</h2><p><strong>王泉</strong>   <em>1996</em> 年 出生于湖北</p>
+<p><strong>哈尔滨工程大学</strong> 保密专业 2014 级本科生</p>
+<h2 id="二-擅长方向"><a href="#二-擅长方向" class="headerlink" title="二. 擅长方向"></a>二. 擅长方向</h2><ul>
+<li>Python</li>
+<li>机器学习</li>
+<li>数据挖掘</li>
+<li>网络安全</li>
+</ul>
+<h2 id="三-大学经历"><a href="#三-大学经历" class="headerlink" title="三. 大学经历"></a>三. 大学经历</h2><ul>
+<li><p><strong>国家大学生创新创业计划</strong> ： 负责 1 项，参与 3 项</p>
 </li>
-<li><h4 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h4><p>我现在是一名大三学生。主要从事机器学习在网络安全的应用的研究。</p>
-<p>​</p>
-</li>
-<li><h4 id="联系方式"><a href="#联系方式" class="headerlink" title="联系方式"></a>联系方式</h4><p>如果你想了解更多，可以通过以下邮箱联系我：</p>
-<p>Mail: <strong> bsdr_work@outlook.com </strong></p>
+<li><h4 id="校内项目经历："><a href="#校内项目经历：" class="headerlink" title="校内项目经历："></a>校内项目经历：</h4><ul>
+<li>基于隐马尔科夫模型的 WAF ：项目负责人，参与核心功能开发。利用反向代理抓取网络流量，基于 HMM 模型，对 HTTP 请求进行检测，阻断对目标网站的恶意攻击。</li>
+<li>反网络欺诈项目：项目负责人，参与核心功能开发。利用无状态扫描扫描互联网上的网站，爬取网站主页，并利用 Lstm、TextCNN 对网站内容进行检测，判断是否属于钓鱼网站。</li>
+<li>网络隔离环境下的窃密方法：项目负责人，参与核心功能开发。将处于网络隔离环境下的堡垒机上的文件转化为超声波音频，利用边信道攻击窃取秘密文件。</li>
+</ul>
 </li>
 </ul>
+<h2 id="四-获得奖项"><a href="#四-获得奖项" class="headerlink" title="四. 获得奖项"></a>四. 获得奖项</h2><ul>
+<li><p>第六届全国机器人创意设计大赛  一等奖(亚军)</p>
+</li>
+<li><p>第三届全国智力运动会暨第九届全国计算机博弈锦标赛  亚马逊棋  二等奖</p>
+</li>
+<li><p>第三届全国智力运动会暨第九届全国计算机博弈锦标赛  幻影围棋  三等奖</p>
+</li>
+<li><p>2015 “尚和杯”中国机器人大赛  微软轮式微型机器人项目  三等奖</p>
+</li>
+<li><p>2015 中国机器人大赛暨RoboCup公开赛  水中机器人项目  一等奖</p>
+</li>
+<li><p>2015 中国机器人大赛暨RoboCup公开赛  仿人搏击项目  二等奖</p>
+</li>
+<li><p>2015 中国机器人大赛暨RoboCup公开赛  机器人竞技工程项目窄足竞步  二等奖</p>
+</li>
+<li><p>2015 第六届国际仿人机器人奥林匹克大赛  机器人双人舞蹈项目  一等奖</p>
+</li>
+<li><p>2016 RoboCup机器人世界杯中国赛  RoboCup类人组  三等奖</p>
+<p>​</p>
+</li>
+</ul>
+<h2 id="五-实习经历"><a href="#五-实习经历" class="headerlink" title="五. 实习经历"></a>五. 实习经历</h2><ul>
+<li>2016.7 - 2016.8  杭州默安科技有限公司  数据分析实习生</li>
+<li>2017.7 - 至今  杭州默安科技有限公司  算法工程师</li>
+</ul>
+<h2 id="六-联系方式"><a href="#六-联系方式" class="headerlink" title="六. 联系方式"></a>六. 联系方式</h2><ul>
+<li>微信：wq1340447902</li>
+<li>邮箱：bsdr_work@outlook.com</li>
+</ul>
+<h2 id="关于博客"><a href="#关于博客" class="headerlink" title="关于博客"></a>关于博客</h2><p>  不定期地更新机器学习相关算法的介绍，安全方面的最新进展，机器学习安全应用相关领域的论文阅读笔记，以及一些我自己的研究。</p>
+<p>  ​</p>
 
-  </section>
+            </div>
 
-  <section class="post-comments">
+            <!-- Post Comments -->
+            
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
 
-    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
-    
-</section>
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #7EC0EE;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load" id="disqus_bt"> 
+    <button class="disqus_click_btn">点击查看评论</button>
+</div>
+
+<!--
+<script type="text/javascript">
+$('.btn_click_load').click(function() {
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'http-miccall-tech'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    document.getElementById('disqus_bt').style.display = "none";
+});
+</script>
+-->
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://www.makcer.cn/about/index.html';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://www.makcer.cn/about/index.html'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/javascript">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//http-miccall-tech.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
 
 
-</article>
-
-
-            <footer class="footer">
-
-    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
-    
-</footer>
         </div>
-    </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By <a href="https://hexo.io/zh-cn/" style="border-bottom: none;">hexo</a></li>
+                <li>Design: <a href="http://miccall.tech " style="border-bottom: none;">miccall</a></li>
+            </ul>
+            
+            	<span id="busuanzi_container_site_pv">2018总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+			
+        </div>
+    </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
+</script>
 
-    <!-- js files -->
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/main.js"></script>
-    <script src="/js/scale.fix.js"></script>
-    
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
 
-    
-
-    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript"> 
-        $(document).ready(function(){
-            MathJax.Hub.Config({ 
-                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
-            });
-        });
-    </script>
-
-
-    
-    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=65184760" charset="UTF-8"></script>
-
-
-    
-    <!--kill ie6 -->
-<!--[if IE 6]>
-  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
-<![endif]--><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
 </body>
+
+
+
+ 	
 </html>

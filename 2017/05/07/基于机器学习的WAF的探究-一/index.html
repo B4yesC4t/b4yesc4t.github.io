@@ -1,187 +1,127 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
+
 <head>
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
-    
-
+	<!-- hexo-inject:begin --><!-- hexo-inject:end --><link rel="bookmark"  type="image/x-icon"  href="/images/favicon.ico"/>
+	 <link rel="shortcut icon" href="/images/favicon.ico">
+	
+			
     <title>
-      基于机器学习的WAF的探究(一) | Bsdr&#39;s Blog 
+    Bsdr's Blog
     </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    
+    	<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
 
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    
-      <meta name="author" content="bsdr">
-    
-    
-
-    <meta name="description" content="为什么没有基于机器学习的 WAF机器学习并不是一个新概念, 基于机器学习的 WAF 也并不是最近才兴起. 1998 年 麻省理工就启动了 DARPA 项目, 识图利用算法来取代规则, 构造更为高效智能的 IDS, 其中就包括利用机器学习检测 Web 攻击的课题. 1999 年的 KDD Cup (Data Mining">
-<meta name="keywords" content="WAF,机器学习,文本分类,深度学习,入侵检测">
-<meta property="og:type" content="article">
-<meta property="og:title" content="基于机器学习的WAF的探究(一) | Bsdr&#39;s Blog">
-<meta property="og:url" content="http://yoursite.com/2017/05/07/基于机器学习的WAF的探究-一/index.html">
-<meta property="og:site_name" content="Bsdr&#39;s Blog">
-<meta property="og:description" content="为什么没有基于机器学习的 WAF机器学习并不是一个新概念, 基于机器学习的 WAF 也并不是最近才兴起. 1998 年 麻省理工就启动了 DARPA 项目, 识图利用算法来取代规则, 构造更为高效智能的 IDS, 其中就包括利用机器学习检测 Web 攻击的课题. 1999 年的 KDD Cup (Data Mining and Knowledge Discovery) 竞赛的题目就是 “Compu">
-<meta property="og:updated_time" content="2017-05-07T06:25:50.000Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="基于机器学习的WAF的探究(一) | Bsdr&#39;s Blog">
-<meta name="twitter:description" content="为什么没有基于机器学习的 WAF机器学习并不是一个新概念, 基于机器学习的 WAF 也并不是最近才兴起. 1998 年 麻省理工就启动了 DARPA 项目, 识图利用算法来取代规则, 构造更为高效智能的 IDS, 其中就包括利用机器学习检测 Web 攻击的课题. 1999 年的 KDD Cup (Data Mining and Knowledge Discovery) 竞赛的题目就是 “Compu">
-    
-    
-    
-      <link rel="icon" type="image/x-icon" href="/images/favicon.ico">
-    
-    <link rel="stylesheet" href="/css/uno.css">
-    <link rel="stylesheet" href="/css/highlight.css">
-    <link rel="stylesheet" href="/css/archive.css">
-    <link rel="stylesheet" href="/css/china-social-icon.css"><!-- hexo-inject:begin --><!-- hexo-inject:end -->
-
+			    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script><!-- hexo-inject:begin --><!-- hexo-inject:end -->
+	
 </head>
-<body>
-
-    <!-- hexo-inject:begin --><!-- hexo-inject:end --><span class="mobile btn-mobile-menu">
-        <i class="icon icon-list btn-mobile-menu__icon"></i>
-        <i class="icon icon-x-circle btn-mobile-close__icon hidden"></i>
-    </span>
-
     
+		
+<!-- Layouts -->
 
-<header class="panel-cover panel-cover--collapsed">
 
 
-  <div class="panel-main">
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_coy.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="/" class="logo">BSDR</a>
+</header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">分类</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        <a class="category-link" href="/categories/machine-learning/">机器学习</a></li><li><a class="category-link" href="/categories/cyber-security/">网络安全</a>
+	                    </ul>
+	        </li>
+	        
+	        <!-- archives  归档   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">归档</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        <a class="archive-link" href="/archives/2017/05/">May 2017</a></li><li><a class="archive-link" href="/archives/2017/04/">April 2017</a>
+	                    </ul>
+	        </li>
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="/about/" title="简历">
+		                简历
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/paper/" title="论文">
+		                论文
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/gallery/" title="图库">
+		                图库
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/tag/" title="标签">
+		                标签
+		            </a>
+		        </li>
+		        
 
-  
-    <div class="panel-main__inner panel-inverted">
-    <div class="panel-main__content">
-
-        
-
-        <h1 class="panel-cover__title panel-title"><a href="/" title="link to homepage">Bsdr&#39;s Blog</a></h1>
-        <hr class="panel-cover__divider" />
-
-        
-        <p class="panel-cover__description">
-          Cyber-security &amp; Machine Learning
-        </p>
-        <hr class="panel-cover__divider panel-cover__divider--secondary" />
-        
-
-        <div class="navigation-wrapper">
-
-          <nav class="cover-navigation cover-navigation--primary">
-            <ul class="navigation">
-
-              
-                
-                <li class="navigation__item"><a href="/#blog" title="" class="blog-button">首页</a></li>
-              
-                
-                <li class="navigation__item"><a href="/about" title="" class="">关于</a></li>
-              
-                
-                <li class="navigation__item"><a href="/archive" title="" class="">归档</a></li>
-              
 
             </ul>
-          </nav>
+            <!-- icons 图标   -->
+			<ul class="icons">
+		            
+		                <li><a href="https://github.com/b4yesc4t" class="icon fa-github"><span class="label">GitHub</span></a></li>
+		            
+		            
+		            
+		            
+			</ul>
+</nav>
 
-          <!-- ----------------------------
-To add a new social icon simply duplicate one of the list items from below
-and change the class in the <i> tag to match the desired social network
-and then add your link to the <a>. Here is a full list of social network
-classes that you can use:
-
-    icon-social-500px
-    icon-social-behance
-    icon-social-delicious
-    icon-social-designer-news
-    icon-social-deviant-art
-    icon-social-digg
-    icon-social-dribbble
-    icon-social-facebook
-    icon-social-flickr
-    icon-social-forrst
-    icon-social-foursquare
-    icon-social-github
-    icon-social-google-plus
-    icon-social-hi5
-    icon-social-instagram
-    icon-social-lastfm
-    icon-social-linkedin
-    icon-social-medium
-    icon-social-myspace
-    icon-social-path
-    icon-social-pinterest
-    icon-social-rdio
-    icon-social-reddit
-    icon-social-skype
-    icon-social-spotify
-    icon-social-stack-overflow
-    icon-social-steam
-    icon-social-stumbleupon
-    icon-social-treehouse
-    icon-social-tumblr
-    icon-social-twitter
-    icon-social-vimeo
-    icon-social-xbox
-    icon-social-yelp
-    icon-social-youtube
-    icon-social-zerply
-    icon-mail
-
--------------------------------->
-
-<!-- add social info here -->
-
-
-
-        </div>
-
-      </div>
-
-    </div>
-
-    <div class="panel-cover--overlay"></div>
-  </div>
-</header>
-
-    <div class="content-wrapper">
-        <div class="content-wrapper__inner entry">
-            
-
-<article class="post-container post-container--single">
-
-  <header class="post-header">
-    
-    <h1 class="post-title">基于机器学习的WAF的探究(一)</h1>
-
-    
-
-    <div class="post-meta">
-      <time datetime="2017-05-07" class="post-meta__date date">2017-05-07</time> 
-
-      <span class="post-meta__tags tags">
-
-          
-
-          
-             &#8226; 标签:
-            <font class="tags">
-              <a class="tags-link" href="/tags/WAF/">WAF</a>, <a class="tags-link" href="/tags/入侵检测/">入侵检测</a>, <a class="tags-link" href="/tags/文本分类/">文本分类</a>, <a class="tags-link" href="/tags/机器学习/">机器学习</a>, <a class="tags-link" href="/tags/深度学习/">深度学习</a>
-            </font>
-          
-
-      </span>
-    </div>
-    
-    
-
-  </header>
-
-  <section id="post-content" class="article-content post">
-    <h4 id="为什么没有基于机器学习的-WAF"><a href="#为什么没有基于机器学习的-WAF" class="headerlink" title="为什么没有基于机器学习的 WAF"></a>为什么没有基于机器学习的 WAF</h4><p>机器学习并不是一个新概念, 基于机器学习的 WAF 也并不是最近才兴起. 1998 年 麻省理工就启动了 DARPA 项目, 识图利用算法来取代规则, 构造更为高效智能的 IDS, 其中就包括利用机器学习检测 Web 攻击的课题. 1999 年的 KDD Cup (<em>Data Mining and Knowledge Discovery</em>) 竞赛的题目就是 “<em>Computer network intrusion detection</em>“, 希望利用数据挖掘相关理论来做 IDS. IBM 也投入了大量资金进行机器学习 IDS 的研究. 从这以后的二十年里, 学术界陆陆续续进行了很多利用机器学习构造 IDS 和 WAF 的研究, 也有很多引人注意的成果.</p>
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(/image/36300949420_0f952a0e61_b.jpg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >基于机器学习的WAF的探究(一)</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <h4 id="为什么没有基于机器学习的-WAF"><a href="#为什么没有基于机器学习的-WAF" class="headerlink" title="为什么没有基于机器学习的 WAF"></a>为什么没有基于机器学习的 WAF</h4><p>机器学习并不是一个新概念, 基于机器学习的 WAF 也并不是最近才兴起. 1998 年 麻省理工就启动了 DARPA 项目, 识图利用算法来取代规则, 构造更为高效智能的 IDS, 其中就包括利用机器学习检测 Web 攻击的课题. 1999 年的 KDD Cup (<em>Data Mining and Knowledge Discovery</em>) 竞赛的题目就是 “<em>Computer network intrusion detection</em>“, 希望利用数据挖掘相关理论来做 IDS. IBM 也投入了大量资金进行机器学习 IDS 的研究. 从这以后的二十年里, 学术界陆陆续续进行了很多利用机器学习构造 IDS 和 WAF 的研究, 也有很多引人注意的成果.</p>
 <p>但是, <strong>为什么直到今天, 市场上绝大多数的 IDS 和 WAF 还是基于规则的?</strong> 机器学习为什么没有取代规则呢? 甚至在今天, 一些号称基于机器学习的 WAF, 还是需要使用大量的规则, 而且是以规则为主导, 机器学习只进行辅助决策. 这个问题比较复杂, 需要从机器学习本身的特性说起.</p>
 <h4 id="机器学习-WAF-的两种方法和各自的应用场景"><a href="#机器学习-WAF-的两种方法和各自的应用场景" class="headerlink" title="机器学习 WAF 的两种方法和各自的应用场景"></a>机器学习 WAF 的两种方法和各自的应用场景</h4><ul>
 <li><p>方法一: <strong>识别具体攻击行为</strong></p>
@@ -200,65 +140,105 @@ classes that you can use:
 <p>总结来说, <strong>在比赛和测试时, 训练集和测试集的分布大致是一样的, 但在实际使用时, 预测集和训练集的分布有很大不同, 所以很多算法没办法投入实用.</strong> </p>
 <h4 id="机器学习WAF的未来"><a href="#机器学习WAF的未来" class="headerlink" title="机器学习WAF的未来"></a>机器学习WAF的未来</h4><p>算法一定会淘汰传统的规则. 但是目前还不能没有规则, 增大数据集, 利用异常检测, 将算法和规则结合, 这或许是现在唯一可行的方法.</p>
 
-  </section>
+            </div>
 
-  <section class="post-comments">
+            <!-- Post Comments -->
+            
+    <!-- 使用 DISQUS_CLICK -->
+<div id="disqus-comment">
+    <div id="disqus_thread"></div>
 
-    <!-- 将评论系统（例如Disqus、多说、友言、畅言等）提供的代码片段粘贴在这里 -->
-    
-</section>
+<!-- add animation -->
+<style>
+	.disqus_click_btn {
+            line-height: 30px;
+            margin: 0;
+            min-width: 50px;
+            padding: 0 14px;
+            display: inline-block;
+            font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            overflow: hidden;
+            will-change: box-shadow;
+            transition: box-shadow .2s cubic-bezier(.4, 0, 1, 1), background-color .2s cubic-bezier(.4, 0, .2, 1), color .2s cubic-bezier(.4, 0, .2, 1);
+            outline: 0;
+            cursor: pointer;
+            text-decoration: none;
+            text-align: center;
+            vertical-align: middle;
+            border: 0;
+            background: rgba(158, 158, 158, .2);
+            box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+            color: #fff;
+            background-color: #7EC0EE;
+            text-shadow: 0
+        }
+</style>
+	
+<div class="btn_click_load" id="disqus_bt"> 
+    <button class="disqus_click_btn">点击查看评论</button>
+</div>
+
+<!--
+<script type="text/javascript">
+$('.btn_click_load').click(function() {
+    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+    var disqus_shortname = 'http-miccall-tech'; // required: replace example with your forum shortname
+
+    /* * * DON'T EDIT BELOW THIS LINE * * */
+    (function() {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+
+    document.getElementById('disqus_bt').style.display = "none";
+});
+</script>
+-->
+<script type="text/javascript">
+    var disqus_config = function () {
+        this.page.url = 'https://www.makcer.cn/2017/05/07/基于机器学习的WAF的探究-一/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://www.makcer.cn/2017/05/07/基于机器学习的WAF的探究-一/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+</script>
+
+<script type="text/javascript">
+    $('.btn_click_load').click(function() {  //click to load comments
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document;
+            var s = d.createElement('script');
+            s.src = '//http-miccall-tech.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', + new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+        $('.btn_click_load').css('display','none');
+    });
+</script>
+</div>
+<style>
+    #disqus-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
 
 
-</article>
-
-
-            <footer class="footer">
-
-    <span class="footer__copyright">&copy; 2014-2015. | 由<a href="https://hexo.io/">Hexo</a>强力驱动 | 主题<a href="https://github.com/someus/huno">Huno</a></span>
-    
-</footer>
         </div>
-    </div>
-
-    <!-- js files -->
-    <script src="/js/jquery.min.js"></script>
-    <script src="/js/main.js"></script>
-    <script src="/js/scale.fix.js"></script>
-    
-
-    
-
-    <script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/javascript"> 
-        $(document).ready(function(){
-            MathJax.Hub.Config({ 
-                tex2jax: {inlineMath: [['[latex]','[/latex]'], ['\\(','\\)']]} 
-            });
-        });
-    </script>
-
-
-    
-
-    <script src="/js/awesome-toc.min.js"></script>
-    <script>
-        $(document).ready(function(){
-            $.awesome_toc({
-                overlay: true,
-                contentId: "post-content",
-            });
-        });
-    </script>
-
-
-    <script type="text/javascript" src="http://tajs.qq.com/stats?sId=65184760" charset="UTF-8"></script>
-
-
-    
-    <!--kill ie6 -->
-<!--[if IE 6]>
-  <script src="//letskillie6.googlecode.com/svn/trunk/2/zh_CN.js"></script>
-<![endif]--><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By <a href="https://hexo.io/zh-cn/" style="border-bottom: none;">hexo</a></li>
+                <li>Design: <a href="http://miccall.tech " style="border-bottom: none;">miccall</a></li>
+            </ul>
+            
+            	<span id="busuanzi_container_site_pv">2018总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+			
+        </div>
+    </div><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
 <script type="text/x-mathjax-config">
   MathJax.Hub.Config({"tex2jax":{"inlineMath":[["$","$"],["\\(","\\)"]],"skipTags":["script","noscript","style","textarea","pre","code"],"processEscapes":true},"TeX":{"equationNumbers":{"autoNumber":"AMS"}}});
 </script>
@@ -276,6 +256,9 @@ classes that you can use:
 </script>
 <!-- End: Injected MathJax -->
 <!-- hexo-inject:end -->
-
 </body>
+
+
+
+ 	
 </html>
