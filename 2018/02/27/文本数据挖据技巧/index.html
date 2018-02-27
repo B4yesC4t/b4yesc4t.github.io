@@ -116,29 +116,27 @@
 </nav>
 
         <div id="main" >
-            <div class ="post_page_title_img" style="height: 25rem;background-image: url(/image/36300949420_0f952a0e61_b.jpg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
-                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >基于机器学习的WAF的探究(一)</h2></a>
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(/image/text-mining.jpeg);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >文本数据挖据技巧</h2></a>
             </div>
             <!-- Post -->
             <div class="typo" style="padding: 3rem;">
-                <h4 id="为什么没有基于机器学习的-WAF"><a href="#为什么没有基于机器学习的-WAF" class="headerlink" title="为什么没有基于机器学习的 WAF"></a>为什么没有基于机器学习的 WAF</h4><p>机器学习并不是一个新概念, 基于机器学习的 WAF 也并不是最近才兴起. 1998 年 麻省理工就启动了 DARPA 项目, 识图利用算法来取代规则, 构造更为高效智能的 IDS, 其中就包括利用机器学习检测 Web 攻击的课题. 1999 年的 KDD Cup (<em>Data Mining and Knowledge Discovery</em>) 竞赛的题目就是 “<em>Computer network intrusion detection</em>“, 希望利用数据挖掘相关理论来做 IDS. IBM 也投入了大量资金进行机器学习 IDS 的研究. 从这以后的二十年里, 学术界陆陆续续进行了很多利用机器学习构造 IDS 和 WAF 的研究, 也有很多引人注意的成果.</p>
-<p>但是, <strong>为什么直到今天, 市场上绝大多数的 IDS 和 WAF 还是基于规则的?</strong> 机器学习为什么没有取代规则呢? 甚至在今天, 一些号称基于机器学习的 WAF, 还是需要使用大量的规则, 而且是以规则为主导, 机器学习只进行辅助决策. 这个问题比较复杂, 需要从机器学习本身的特性说起.</p>
-<h4 id="机器学习-WAF-的两种方法和各自的应用场景"><a href="#机器学习-WAF-的两种方法和各自的应用场景" class="headerlink" title="机器学习 WAF 的两种方法和各自的应用场景"></a>机器学习 WAF 的两种方法和各自的应用场景</h4><ul>
-<li><p>方法一: <strong>识别具体攻击行为</strong></p>
-<p>简单的说, WAF 的功能是判断一条请求是正常还是攻击, 正常就允许通过, 攻击就阻断. 放在机器学习里, 这是一个很直观的 <strong>二分类</strong> 问题, 即对于一条数据, 判断它是属于正常的类别还是属于攻击. 过去大部分的机器学习 WAF 也都是这么做的. 如果要进行二分类, 就需要获取最容易区分这两类数据的特征. 那如何区分正常请求和攻击? 根据安全经验, 我们之所以能 “一眼就看出” 一些请求是攻击行为, 是因为这些请求中包含一些特定的关键字, SQL 注入中必然会有一些SQL语句, XSS中会有 JS 语句, 尽管这些语句可能会经过多重编码和混淆, 但还是很容易发现. 传统的 WAF 就是直接根据这些关键字来编写规则进行判断, 只要符合规则, 就判定为攻击. 安全专家也是这样判断的. </p>
-<p>通过上面的分析可以发现, 人和传统的规则 WAF 都是通过 <strong>识别出攻击行为</strong> 来进行判断的. 基于分类的机器学习 WAF 也是采用这种思路, 检测出攻击行为, 具体来说就是计算出一条数据属于攻击行为的概率, 概率大于 0.5 (这个阈值可以视情况设定), 就认为是攻击. </p>
-<p>目前一些机器学习 WAF 就是基于这种思路, 为了提高识别的准确率, 往往针对每一种攻击建立一个模型, 每个模型只负责判断请求是正常还是某种具体的攻击, 将多个模型结合起来, 再加上规则进行辅助, 这是很多机器学习 WAF 的做法. 这种 WAF 对训练数据没有过多要求, 只需要利用标记好的特定种类的攻击训练就可以了, 适用的范围比较广. </p>
-<p>在这种方法里, 利用 N-Grams 提取关键词, 计算 TF-IDF Vector, 然后使用 SVM 或者神经网络, 能够取得不错的效果.</p>
+                <p>最近参加了几个文本类数据挖掘的比赛，也做了一些相关的项目，这里总结一下文本数据挖掘的一些小技巧，比较杂乱，希望有用。</p>
+<h3 id="结合问题场景抽象问题"><a href="#结合问题场景抽象问题" class="headerlink" title="结合问题场景抽象问题"></a>结合问题场景抽象问题</h3><p>很多问题场景并不是直接的分类或者回归，当涉及的问题场景比较复杂的时候，可能需要结合数据本身和业务，才能定义具体是什么样的问题。</p>
+<ul>
+<li>对于一些安全问题，需要检测一个样本（可能是一条请求，一个数据包，或者一个用户的一段行为聚合）是正常还是攻击，很多情况下正常样本和攻击样本占比是不一样的，正常比攻击事件要多得多，这种情况下可能需要按照异常检测的思路来做，用 <strong>单分类</strong> 或者 <strong>离群点检测</strong> 可能会比一般的二分类效果更好。</li>
+<li>根据用户在线评论预测用户对服务的满意度的问题中，用户的满意度分为 1 到 5 共五个级别，但满意度是用户情感的体现，这里就可以作为一个情感分析问题，将问题抽象为一个二分类问题，预测情感极性，输出概率，再根据数据分布将概率映射到 1 到 5。</li>
+</ul>
+<h3 id="数据分布相关"><a href="#数据分布相关" class="headerlink" title="数据分布相关"></a>数据分布相关</h3><p>在实际应用中，数据本身分布对预测结果有很大影响。首先，训练集和验证集的数据分布应该一致。在数据挖掘比赛中，提交的结果的数据分布也应该尽量与训练样本一致（官方没有其他特殊说明的情况下）。在实际应用中，对于类别不均衡，生成样本调节样本类别比例实现难度比较大，很难保证生成数据的质量。我几次尝试用 GAN 生成样本，都没有取得理想的效果。</p>
+<h3 id="文本数据增强"><a href="#文本数据增强" class="headerlink" title="文本数据增强"></a>文本数据增强</h3><p>在图像问题里，数据增强几乎成了一个必不可少的步骤。但文本处理中，数据增强是一个很容易忽视的方法。文本数据增强有几种方法，最简单粗暴的就是将句子或者词语顺序打散重排，生成新数据，再进行训练。</p>
+<p>对于一些自然语言相关的问题，样本中包含大量的口语化表述，可能多个词都代表一个意思，这种情况下可以利用同义词词典进行同义词替换，甚至是利用反义词进行替换来增强数据。</p>
+<h3 id="特征抽取"><a href="#特征抽取" class="headerlink" title="特征抽取"></a>特征抽取</h3><p>常见的特征抽取不赘述了。对于文本，有两个可能比较有效的特征，一个是利用命名实体识别，发掘文本中包含的地名、人名、机构名等，这些可能包含很多信息。另一个是文本中包含的颜文字和表情，这个也可能包含了用户的情感和其他特征。</p>
+<h3 id="合适的模型"><a href="#合适的模型" class="headerlink" title="合适的模型"></a>合适的模型</h3><ul>
+<li><h4 id="Baseline-model"><a href="#Baseline-model" class="headerlink" title="Baseline model"></a>Baseline model</h4><p>对于一般的文本分类任务，如果类别区分度大，<strong>N-Gram</strong> + <strong>TF-IDF</strong> + <strong>xgboost / lgbm</strong> 组合就能取得一个不错的效果。提取特征时，也可以将 tfidf 向量、lda 向量和词向量拼接起来，降维以后跑 xgb 。这种方法也是一个不错的 baseline  。</p>
 </li>
-<li><p>方法二: <strong>识别正常行为</strong></p>
-<p>这种方法有一个更常见的名字: <strong>异常检测</strong> . 主要思想是, 对于每一个 Web 应用建模, 让模型计算每种请求出现概率, 由于对于一般的 Web 应用, 正常请求远远多于异常请求, 所以正常请求出现的概率远大于异常. 对于一条请求, 计算得到它出现的概率, 如果概率很小, 就可以认为是异常. </p>
-<p>这种方法实质上是借用了自然语言处理中建立 <strong>语言模型</strong> 的思想, 具体的实现可以采用 One-Class SVM, ISOForest, HMM, 在特定的Web应用上都能取得不错的效果.</p>
+<li><h4 id="深度学习方法"><a href="#深度学习方法" class="headerlink" title="深度学习方法"></a>深度学习方法</h4><p>对于文本分类问题，一般来讲，LSTM，特别是加入 Attention 的 LSTM，效果是要优于 TextCNN 类方法的。很多情况下，文本任务都需要挖掘出文本序列中某几个相隔很远的词语的关系，CNN 经过卷积可能会丢失这种信息。另外，对于不同的任务，按字符进行处理和按词进行处理，差别是很大的。</p>
 </li>
 </ul>
-<h4 id="为什么不能投入实用"><a href="#为什么不能投入实用" class="headerlink" title="为什么不能投入实用"></a>为什么不能投入实用</h4><p>以上这两种方法, 在公开的数据集上测试都能取得不错的效果. 在一些安全相关的数据挖掘比赛中, 利用这些方法甚至能得到 0.99 以上的准确率. 但为什么这些没有投入实用? 仔细分析会发现, 对于固定的数据集, 这些算法看上去都能取得很好的效果, 实质上全部都过拟合了. 过度拟合数据集中攻击, 对于数据集中不包含的攻击行为检测效果很差. 出现这个问题, 很大一部分原因是因为数据集有问题. </p>
-<p>现今大部分机器学习WAF都是采用的第一种方法. 采用第一种方法需要大量的打标数据进行训练, 而在安全领域, 还没有一个像 ImageNet 那样丰富而庞大的数据集. 一方面数据量不够大, 包含的攻击行为种类太少; 另一方面, 标记的质量太低, 很多标记都是根据传统的 WAF 的检测结果得来的. 这样的数据拿来训练, <strong>算法设计得再好, 最终效果也只能和传统的 WAF 接近</strong>, 而由于数据量的问题, 即使测试效果再好, 在实际使用中, 会遇到大量在训练集中完全没有出现过的数据, 这些因素导致用算法甚至远远不如用规则效果好. </p>
-<p>总结来说, <strong>在比赛和测试时, 训练集和测试集的分布大致是一样的, 但在实际使用时, 预测集和训练集的分布有很大不同, 所以很多算法没办法投入实用.</strong> </p>
-<h4 id="机器学习WAF的未来"><a href="#机器学习WAF的未来" class="headerlink" title="机器学习WAF的未来"></a>机器学习WAF的未来</h4><p>算法一定会淘汰传统的规则. 但是目前还不能没有规则, 增大数据集, 利用异常检测, 将算法和规则结合, 这或许是现在唯一可行的方法.</p>
 
             </div>
 
@@ -201,8 +199,8 @@ $('.btn_click_load').click(function() {
 -->
 <script type="text/javascript">
     var disqus_config = function () {
-        this.page.url = 'https://www.makcer.cn/2017/05/07/基于机器学习的WAF的探究-一/';  // Replace PAGE_URL with your page's canonical URL variable
-        this.page.identifier = 'https://www.makcer.cn/2017/05/07/基于机器学习的WAF的探究-一/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        this.page.url = 'https://www.makcer.cn/2018/02/27/文本数据挖据技巧/';  // Replace PAGE_URL with your page's canonical URL variable
+        this.page.identifier = 'https://www.makcer.cn/2018/02/27/文本数据挖据技巧/'; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
     };
 </script>
 

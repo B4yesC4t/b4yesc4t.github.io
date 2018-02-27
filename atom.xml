@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.makcer.cn/"/>
-  <updated>2018-02-04T15:34:27.830Z</updated>
+  <updated>2018-02-27T06:56:27.156Z</updated>
   <id>https://www.makcer.cn/</id>
   
   <author>
@@ -14,6 +14,49 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>文本数据挖据技巧</title>
+    <link href="https://www.makcer.cn/2018/02/27/%E6%96%87%E6%9C%AC%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8D%AE%E6%8A%80%E5%B7%A7/"/>
+    <id>https://www.makcer.cn/2018/02/27/文本数据挖据技巧/</id>
+    <published>2018-02-27T06:53:41.000Z</published>
+    <updated>2018-02-27T06:56:27.156Z</updated>
+    
+    <content type="html"><![CDATA[<p>最近参加了几个文本类数据挖掘的比赛，也做了一些相关的项目，这里总结一下文本数据挖掘的一些小技巧，比较杂乱，希望有用。</p>
+<h3 id="结合问题场景抽象问题"><a href="#结合问题场景抽象问题" class="headerlink" title="结合问题场景抽象问题"></a>结合问题场景抽象问题</h3><p>很多问题场景并不是直接的分类或者回归，当涉及的问题场景比较复杂的时候，可能需要结合数据本身和业务，才能定义具体是什么样的问题。</p>
+<ul>
+<li>对于一些安全问题，需要检测一个样本（可能是一条请求，一个数据包，或者一个用户的一段行为聚合）是正常还是攻击，很多情况下正常样本和攻击样本占比是不一样的，正常比攻击事件要多得多，这种情况下可能需要按照异常检测的思路来做，用 <strong>单分类</strong> 或者 <strong>离群点检测</strong> 可能会比一般的二分类效果更好。</li>
+<li>根据用户在线评论预测用户对服务的满意度的问题中，用户的满意度分为 1 到 5 共五个级别，但满意度是用户情感的体现，这里就可以作为一个情感分析问题，将问题抽象为一个二分类问题，预测情感极性，输出概率，再根据数据分布将概率映射到 1 到 5。</li>
+</ul>
+<h3 id="数据分布相关"><a href="#数据分布相关" class="headerlink" title="数据分布相关"></a>数据分布相关</h3><p>在实际应用中，数据本身分布对预测结果有很大影响。首先，训练集和验证集的数据分布应该一致。在数据挖掘比赛中，提交的结果的数据分布也应该尽量与训练样本一致（官方没有其他特殊说明的情况下）。在实际应用中，对于类别不均衡，生成样本调节样本类别比例实现难度比较大，很难保证生成数据的质量。我几次尝试用 GAN 生成样本，都没有取得理想的效果。</p>
+<h3 id="文本数据增强"><a href="#文本数据增强" class="headerlink" title="文本数据增强"></a>文本数据增强</h3><p>在图像问题里，数据增强几乎成了一个必不可少的步骤。但文本处理中，数据增强是一个很容易忽视的方法。文本数据增强有几种方法，最简单粗暴的就是将句子或者词语顺序打散重排，生成新数据，再进行训练。</p>
+<p>对于一些自然语言相关的问题，样本中包含大量的口语化表述，可能多个词都代表一个意思，这种情况下可以利用同义词词典进行同义词替换，甚至是利用反义词进行替换来增强数据。</p>
+<h3 id="特征抽取"><a href="#特征抽取" class="headerlink" title="特征抽取"></a>特征抽取</h3><p>常见的特征抽取不赘述了。对于文本，有两个可能比较有效的特征，一个是利用命名实体识别，发掘文本中包含的地名、人名、机构名等，这些可能包含很多信息。另一个是文本中包含的颜文字和表情，这个也可能包含了用户的情感和其他特征。</p>
+<h3 id="合适的模型"><a href="#合适的模型" class="headerlink" title="合适的模型"></a>合适的模型</h3><ul>
+<li><h4 id="Baseline-model"><a href="#Baseline-model" class="headerlink" title="Baseline model"></a>Baseline model</h4><p>对于一般的文本分类任务，如果类别区分度大，<strong>N-Gram</strong> + <strong>TF-IDF</strong> + <strong>xgboost / lgbm</strong> 组合就能取得一个不错的效果。提取特征时，也可以将 tfidf 向量、lda 向量和词向量拼接起来，降维以后跑 xgb 。这种方法也是一个不错的 baseline  。</p>
+</li>
+<li><h4 id="深度学习方法"><a href="#深度学习方法" class="headerlink" title="深度学习方法"></a>深度学习方法</h4><p>对于文本分类问题，一般来讲，LSTM，特别是加入 Attention 的 LSTM，效果是要优于 TextCNN 类方法的。很多情况下，文本任务都需要挖掘出文本序列中某几个相隔很远的词语的关系，CNN 经过卷积可能会丢失这种信息。另外，对于不同的任务，按字符进行处理和按词进行处理，差别是很大的。</p>
+</li>
+</ul>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;最近参加了几个文本类数据挖掘的比赛，也做了一些相关的项目，这里总结一下文本数据挖掘的一些小技巧，比较杂乱，希望有用。&lt;/p&gt;
+&lt;h3 id=&quot;结合问题场景抽象问题&quot;&gt;&lt;a href=&quot;#结合问题场景抽象问题&quot; class=&quot;headerlink&quot; title=&quot;结合问题场景
+    
+    </summary>
+    
+      <category term="机器学习" scheme="https://www.makcer.cn/categories/machine-learning/"/>
+    
+    
+      <category term="机器学习" scheme="https://www.makcer.cn/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="数据挖掘" scheme="https://www.makcer.cn/tags/%E6%95%B0%E6%8D%AE%E6%8C%96%E6%8E%98/"/>
+    
+      <category term="文本分类" scheme="https://www.makcer.cn/tags/%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/"/>
+    
+  </entry>
   
   <entry>
     <title>网络安全中的机器对抗</title>
@@ -89,13 +132,13 @@
       <category term="机器学习" scheme="https://www.makcer.cn/categories/machine-learning/"/>
     
     
-      <category term="WAF" scheme="https://www.makcer.cn/tags/WAF/"/>
-    
       <category term="机器学习" scheme="https://www.makcer.cn/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
       <category term="文本分类" scheme="https://www.makcer.cn/tags/%E6%96%87%E6%9C%AC%E5%88%86%E7%B1%BB/"/>
     
       <category term="深度学习" scheme="https://www.makcer.cn/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
+    
+      <category term="WAF" scheme="https://www.makcer.cn/tags/WAF/"/>
     
       <category term="入侵检测" scheme="https://www.makcer.cn/tags/%E5%85%A5%E4%BE%B5%E6%A3%80%E6%B5%8B/"/>
     
@@ -141,13 +184,13 @@ minimize \quad \sum_{i=1}^NL(y_i, f(x_i; \theta)) \tag{5}</script><p>最终机�
     
       <category term="机器学习" scheme="https://www.makcer.cn/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
-      <category term="深度学习" scheme="https://www.makcer.cn/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
-    
       <category term="数值优化" scheme="https://www.makcer.cn/tags/%E6%95%B0%E5%80%BC%E4%BC%98%E5%8C%96/"/>
     
       <category term="算法" scheme="https://www.makcer.cn/tags/%E7%AE%97%E6%B3%95/"/>
     
       <category term="凸优化" scheme="https://www.makcer.cn/tags/%E5%87%B8%E4%BC%98%E5%8C%96/"/>
+    
+      <category term="深度学习" scheme="https://www.makcer.cn/tags/%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
